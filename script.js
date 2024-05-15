@@ -42,13 +42,6 @@ var dob = document.querySelector("#dateofbirth");
 dob.max = new Date().toISOString().split("T")[0];
 var button = document.querySelector("#but");
 var center = document.querySelector("#center2");
-// var bvalue = "";
-    // var bday = "";
-    // var bmonth = "";
-    // var byear = "";
-    // var year = "";
-    // var month = "";
-    // var day = "";
     let year , month ,day = "";
     var cdate = new Date();
     // console.log(cdate);
@@ -58,7 +51,6 @@ var center = document.querySelector("#center2");
     var lastDayOfMonth = new Date(cyear, cmonth-1, 0);
     var noofdays = lastDayOfMonth.getDate();
     
-    // console.log(dob.value);
 function age(){
   let dateofbirth = new Date(dob.value);
     let bday=dateofbirth.getDate();
@@ -116,21 +108,7 @@ function age(){
             duration:0.5,
             delay:0.3
            })
-         }, 5000);
-         
-//            var clut = `<div id="dob">
-//   <h4>Enter your DOB</h4>
-//   <div id="date">
-//   <input type="date" name="" value="2001-01-01" id="dateofbirth">
-//   </div>
-// </div>`;
-// setTimeout(() => {
-// var continu = document.querySelector("#continue");
-// continu.addEventListener("click",function(){
-// center.innerHTML = clut;
-// }) 
-// }, 4000);       
-                    
+         }, 5000);                    
 }
 button.addEventListener("click",()=>{
   age();
@@ -138,7 +116,4 @@ button.addEventListener("click",()=>{
 })
 
 
-
-// button.addEventListener("click",function(){
-// })
 

@@ -534,9 +534,7 @@ html,body{
 #img img{
   height: 90%;
   width: 70px;
-  /* size: ; */
   border-radius: 50%;
-  /* background-color:rgb(71, 60, 60) ; */
 }
 #right{
   height: 100%;
@@ -561,7 +559,6 @@ html,body{
   border-radius: 50px;
   padding: 20px 20px;
   border: 1px solid rgb(71, 60, 60);
-  /* border-bottom: none; */
 }
 #center h4{
   font-size: 25px;
@@ -573,7 +570,6 @@ html,body{
 
 #dob input{
   margin-top: 25px;
-  /* margin-left: 20px; */
   height: 90px;
   width: 100%;
   border-radius: 20px;
@@ -590,7 +586,7 @@ html,body{
   border: 1px solid rgb(71, 60, 60);
   position: relative;
   display: none;
-  /* border-top: none; */
+
 }
 
 #center button{
@@ -609,12 +605,6 @@ html,body{
   height: 100%;
   width: 100%;
   position: relative;
-
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50% ,-50%); */
-
 }
 #center2 h4{
   font-size: 35px;

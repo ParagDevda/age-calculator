@@ -33,21 +33,23 @@ tl.from("#nav h3",{
     duration:1,
     stagger:0.3
 })
-tl.from("#center",{
+tl.from("#mid",{
     // scale:0,
     opacity:0,
     duration:0.5
 })
 var dob = document.querySelector("#dateofbirth");
-var button = document.querySelector("#center button");
-var center = document.querySelector("#center");
-var bvalue = "";
-    var bday = "";
-    var bmonth = "";
-    var byear = "";
-    var year = "";
-    var month = "";
-    var day = "";
+dob.max = new Date().toISOString().split("T")[0];
+var button = document.querySelector("#but");
+var center = document.querySelector("#center2");
+// var bvalue = "";
+    // var bday = "";
+    // var bmonth = "";
+    // var byear = "";
+    // var year = "";
+    // var month = "";
+    // var day = "";
+    let year , month ,day = "";
     var cdate = new Date();
     // console.log(cdate);
     var cday = cdate.getDate();
@@ -55,80 +57,88 @@ var bvalue = "";
     var cyear = cdate.getFullYear();
     var lastDayOfMonth = new Date(cyear, cmonth-1, 0);
     var noofdays = lastDayOfMonth.getDate();
+    
     // console.log(dob.value);
 function age(){
-    dob.addEventListener("input",function(){
-        bvalue = dob.value;
-        button.addEventListener("click",function(){
-          console.log("clicked");
-            // console.log(bvalue);
-            var dateofbirth = new Date(bvalue);
-            // console.log(dateofbirth);
-            bday=dateofbirth.getDate();
-            // console.log(bday);
-            bmonth = dateofbirth.getMonth();
-            byear = dateofbirth.getFullYear();
+  let dateofbirth = new Date(dob.value);
+    let bday=dateofbirth.getDate();
+    let bmonth = dateofbirth.getMonth()+1;
+    let byear = dateofbirth.getFullYear();
             year = cyear - byear;
-            if(byear>cyear){
-              alert("please enter right dob");
-            }else{  
-              if(cmonth == bmonth){
-                if(cday >= bday){
-                  day = cday - bday ;
-                  month = cmonth - bmonth;
-                  console.log("sas");
-                }else{
-                  month = 11;
-                  day = (noofdays -bday) + cday;
-                  year--;
-                }
-              }
-              if (cmonth > bmonth){
-                if(cday >= bday){
-                  day = cday - bday ;
-                  month = cmonth - bmonth;
-                }else{
-                  month = (cmonth - bmonth)-1;
-                  day = (noofdays -bday) + cday;
-                }
-              }if(cmonth<bmonth){
-                month = 12 -(bmonth-cmonth);
-                year--;
-                if (cday >= bday) {
-                  day = cday -bday ;
-                } else {
-                  month--;
-                  day = (noofdays -bday) + cday;
-                }
-              }
+           
+            if(cmonth>=bmonth){
+              month = cmonth - bmonth;
+            }else{
+              month = 12-(bmonth-cmonth);
+              year--;
             }
-            
-           var clutter = `  <div id="center1"> <div id="img">
+            if(cday>=bday){
+              day = cday-bday;
+            }else{
+              month--;
+              day = (noofdays -bday) + cday;
+            }
+            if(month<0){
+              month = 11;
+              year--;
+            }
+            gsap.to("#center2",{
+              display:"flex",
+              alignItems: "center",
+              justifyContent: "center",
+              delay:0.3
+            })
+            gsap.from("#center2",{
+              opacity:0,
+              duration:2,
+              delay:0.2
+            })
+              var clutter = `  <div id="center1"> <div id="img">
            <img src="./wait-hourglass.svg" alt="">
           </div>
              <h3>calculating your age...</h3>
              </div>
        </div> </div> `;
+       center.innerHTML = clutter;
+       gsap.to("#center1 img",{
+        rotateX:180,
+        duration:0.77,
+        delay:2,
+        repeat:-1
+      })
          setTimeout(() => {
-          clutter = ` <h4>You are <br> ${year} year's ,${month} month's and ${day} day's old
-          <button id = "continue">continue</button></h4>` ;
+          clutter = ` <h4>You are  ${year} year's ,${month} month's and ${day} day's old
+          </h4>` ;
           center.innerHTML = clutter;
-         }, 3000);
-           center.innerHTML = clutter;
-           var clut = `<div id="dob">
-           <h4>Enter your DOB</h4>
-           <div id="date">
-           <input type="date" name="" value="2001-01-01" id="dateofbirth">
-           </div>
-       </div>
-       <button>My Age</button>`;
-       setTimeout(() => {
-        var continu = document.querySelector("#continue");
-       continu.addEventListener("click",function(){
-        center.innerHTML = clut;
-       }) 
-       }, 3000);
-        })  
-    })
-  }
+          gsap.from("#center2 h4",{
+            opacity:0,
+            scale:0,
+            duration:0.5,
+            delay:0.3
+           })
+         }, 5000);
+         
+//            var clut = `<div id="dob">
+//   <h4>Enter your DOB</h4>
+//   <div id="date">
+//   <input type="date" name="" value="2001-01-01" id="dateofbirth">
+//   </div>
+// </div>`;
+// setTimeout(() => {
+// var continu = document.querySelector("#continue");
+// continu.addEventListener("click",function(){
+// center.innerHTML = clut;
+// }) 
+// }, 4000);       
+                    
+}
+button.addEventListener("click",()=>{
   age();
+
+})
+
+
+
+// button.addEventListener("click",function(){
+// })
+
